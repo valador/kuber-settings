@@ -1,0 +1,57 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    deployment:
+      kind: 'DaemonSet'
+    pilot:
+      dashboard: false
+    ingressRoute:
+      dashboard:
+        enabled: false
+    logs:
+      general:
+        level: 'WARN'
+      access:
+        enabled: true
+        format: 'json'
+        fields:
+          general:
+            defaultmode: 'drop'
+            names:
+              ClientAddr: 'keep'
+              ClientUsername: 'keep'
+              DownstreamStatus: 'keep'
+              Duration: 'keep'
+              OriginStatus: 'keep'
+              RequestAddr: 'keep'
+              RequestMethod: 'keep'
+              RequestPath: 'keep'
+              RequestScheme: 'keep'
+              RouterName: 'keep'
+          headers:
+            defaultmode: 'drop'
+            names:
+              User-Agent: 'keep'
+    globalArguments:
+      - '--global.checknewversion=false'
+      - '--global.sendanonymoususage=false'
+    additionalArguments:
+      - '--metrics.prometheus=true'
+      - '--metrics.prometheus.entryPoint=metrics'
+    ports:
+      web:
+        port: 8000
+        hostPort: 80
+        redirectTo: 'websecure'
+      websecure:
+        port: 8443
+        hostPort: 443
+      metrics:
+        port: 8082
+        # hostPort: not exposed
+    service:
+      enabled: false

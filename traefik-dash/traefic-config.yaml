@@ -1,0 +1,75 @@
+# /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+# apiVersion: helm.cattle.io/v1
+# kind: HelmChartConfig
+# metadata:
+#   name: traefik
+#   namespace: kube-system
+# spec:
+#   valuesContent: |-
+#     rbac.enabled: true
+#     metrics.prometheus.enabled: true
+#     kubernetes.ingressEndpoint.useDefaultPublishedService: true
+#     ssl:
+#       insecureSkipVerify: true
+#       enabled: true
+#       permanentRedirect: false
+#     dashboard:
+#       enabled: "true"
+#       domain: "traefik.mydomain.com"
+---
+# /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    globalArguments:
+      - "--global.sendanonymoususage=false"
+    logs:
+      general:
+        level: "INFO"
+    metrics:
+      prometheus:
+        enabled: false
+    dashboard:
+      enabled: true
+    ingressRoute:
+      dashboard:
+        enabled: false
+    entryPoints:
+      registry:
+        address: ":5005"
+  # globalArguments:
+  #   # - "--global.checknewversion"
+  #   - "--global.sendanonymoususage=false"
+  # logs:
+  #   general:
+  #     level: "INFO"
+  # metrics:
+  #   prometheus:
+  #     enabled: false
+  # # entryPoints:
+  # #   web:
+  # #     address: ":80"
+  # #     # http:
+  # #     #   redirections:
+  # #     #     entryPoint:
+  # #     #       to: websecure
+  # #     #       scheme: https
+  # #   websecure:
+  # #     address: ":443"
+  # dashboard:
+  #   enabled: true
+  # ingressRoute:
+  #   dashboard:
+  #     enabled: false
+  # # ports:
+  # #   web:
+  # #     port: 8000
+  # #     hostPort: 80
+  # #     # redirectTo: 'websecure'
+  # #   websecure:
+  # #     port: 8443
+  # #     hostPort: 443

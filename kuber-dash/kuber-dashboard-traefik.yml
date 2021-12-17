@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: dashboard-k8s
+  namespace: kubernetes-dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostSNI(`dashboard.dev-srv.home.lan`)
+      services:
+      - name: kubernetes-dashboard
+        namespace: kubernetes-dashboard
+        port: 443
+  tls:
+    passthrough: true
