@@ -10,8 +10,9 @@ k3s-install:
 	curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -
 k3s-delete:
 	k3s-uninstall.sh
-.PHONY:  cert-manager-up cert-manager-delete kuber-dash-token
-cert-manager-up:
+	sudo rm -rf /var/lib/rancher
+.PHONY:  cert-manager-install cert-manager-delete kuber-dash-token
+cert-manager-install:
 	sudo kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.1/cert-manager.yaml
 cert-manager-delete:
 	sudo kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.6.1/cert-manager.yaml
