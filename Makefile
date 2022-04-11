@@ -13,9 +13,9 @@ k3s-delete:
 	sudo rm -rf /var/lib/rancher
 .PHONY:  cert-manager-install cert-manager-delete kuber-dash-token
 cert-manager-install:
-	sudo kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.1/cert-manager.yaml
+	sudo kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.0/cert-manager.yaml
 cert-manager-delete:
-	sudo kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.6.1/cert-manager.yaml
+	sudo kubectl delete -f https://github.com/jetstack/cert-manager/releases/download/v1.8.0/cert-manager.yaml
 # Kubernetes Dashboard
 .PHONY: kuber-dash-install kuber-dash-delete kuber-dash-token
 kuber-dash-install:
