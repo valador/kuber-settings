@@ -41,7 +41,7 @@ kuber-dash-token:
 	sudo ./kuber-dash/get-token.sh
 kuber-dash-kubeconfig:
 # need delete after uninstall dashboard?
-	sudo ./kuber-dash/kubeconfig-dashboard.sh
+	sudo ./kuber-dash/get-kubeconfig.sh
 # Traefik Dashboard
 .PHONY: traefik-dash-install traefik-dash-delete
 traefik-dash-install:
