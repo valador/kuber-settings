@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`dashboard.dev-srv.home.lan`)
+    - match: HostSNI(`dashboard.server.lan`)
       services:
       - name: kubernetes-dashboard
         namespace: kubernetes-dashboard

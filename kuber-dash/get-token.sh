@@ -8,7 +8,9 @@ set -x
 
 #kubectl -n kube-system get secret $SECRET -o jsonpath='{.data.token}' | base64 -d > ./dashboard/TOKEN.txt
 
-sudo k3s kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token > ./kuber-dash/TOKEN.txt
+# sudo k3s kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token > ./kuber-dash/TOKEN.txt
+
+sudo k3s kubectl -n kubernetes-dashboard create token admin-user > ./kuber-dash/TOKEN.txt
 
 #kubectl config view --raw \
 #-o=jsonpath='{.clusters[0].cluster.certificate-authority-data}' \
