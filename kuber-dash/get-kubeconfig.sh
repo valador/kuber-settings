@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Feed variables to kubectl commands (modify as needed).  crb and rb can not both be true
+# Feed variables to kubectl commands (modify as needed).
 # ------------------------------------------- #
 clustername=default
 name=admin-user

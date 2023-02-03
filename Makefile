@@ -45,15 +45,15 @@ kuber-dash-kubeconfig:
 # Traefik Dashboard
 .PHONY: traefik-dash-install traefik-dash-delete
 traefik-dash-install:
-	sudo kubectl apply -f ./traefik-dash/001-crd.yaml
-	sudo kubectl apply -f ./traefik-dash/002-rbac.yaml
-	sudo kubectl apply -f ./traefik-dash/traefik-dashboard-ingressroute.yml
-	# sudo cp ./traefik-dash/traefic-config.yaml /var/lib/rancher/k3s/server/manifests/
+# sudo kubectl apply -f ./traefik-dash/001-crd.yaml
+# sudo kubectl apply -f ./traefik-dash/002-rbac.yaml
+	sudo kubectl create -f ./traefik-dash/traefik-dashboard-ingressroute.yml
+# sudo cp ./traefik-dash/traefic-config.yaml /var/lib/rancher/k3s/server/manifests/
 traefik-dash-delete:
 	sudo kubectl delete -f ./traefik-dash/traefik-dashboard-ingressroute.yml
-	sudo kubectl delete -f ./traefik-dash/001-crd.yaml
-	sudo kubectl delete -f ./traefik-dash/002-rbac.yaml
-	# sudo rm /var/lib/rancher/k3s/server/manifests/traefic-config.yaml
+# sudo kubectl delete -f ./traefik-dash/001-crd.yaml
+# sudo kubectl delete -f ./traefik-dash/002-rbac.yaml
+# sudo rm /var/lib/rancher/k3s/server/manifests/traefic-config.yaml
 .PHONY: get-all
 get-all:
 	sudo kubectl get all --all-namespaces
